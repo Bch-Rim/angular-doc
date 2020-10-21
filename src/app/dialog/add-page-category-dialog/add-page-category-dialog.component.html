@@ -1,0 +1,48 @@
+<h1 mat-dialog-title>Add new {{formGroup.controls['type'].value}}</h1>
+
+
+<div mat-dialog-content>
+    <form [formGroup]="formGroup">
+        <div class="form-group">
+            <mat-radio-group aria-label="Select an option" formControlName="type">
+                <mat-radio-button *ngFor="let type of types" [value]="type" >
+                    {{type}}
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div class="form-group">
+            <mat-form-field appearance="fill" >
+                <mat-label>{{formGroup.controls['type'].value}} Title </mat-label>
+                <input matInput name="title" formControlName="title" required >
+                <!-- <mat-error *ngIf="f.title.hasError('required')">Please set title </mat-error> -->
+            </mat-form-field>
+        </div>
+
+        <div class="form-group">
+            <mat-form-field>
+                <mat-label>Parent category</mat-label>
+                <mat-select matNativeControl  formControlName="categorie">
+
+                    <ng-container *ngFor="let categorie of data.categories">
+                        <!-- <mat-option value="">Choose</mat-option> -->
+                        <mat-option [disabled]="formGroup.controls['type'].value == 'Page'" [value]="categorie.id">
+                            {{categorie.title}}
+                        </mat-option>
+                        <ng-container *ngIf="formGroup.controls['type'].value == 'Page'">
+                            <mat-option *ngFor="let subcategorie of categorie.subcategories" [value]="subcategorie.id">
+                                --- {{subcategorie.title}}
+                            </mat-option>
+                        </ng-container>
+                    </ng-container>
+                </mat-select>
+                <!-- <mat-error *ngIf="f.categorie.hasError('required')">Please set categorie </mat-error> -->
+            </mat-form-field>
+        </div>
+    </form>
+</div>
+
+<div mat-dialog-actions>
+
+    <button mat-button color="accent" (click)="onNoClick()">Back</button>
+    <button mat-button (click)="add()">Add</button>
+</div>

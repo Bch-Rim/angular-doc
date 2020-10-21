@@ -1,0 +1,44 @@
+<h2 class="section-title">{{page?.title}}</h2>
+
+<div cdkDropList (cdkDropListDropped)="drop($event)" >
+  <div *ngFor="let section of page?.sections; let i = index" class="section-draggable" cdkDrag>
+
+      <span class="material-icons drag" cdkDragHandled *appHasRole="'admin'">
+        drag_indicator
+      </span>
+      <span class="material-icons edit" (click)="openDialog(section)" *appHasRole="'admin'">
+        create
+      </span>
+      <span class="material-icons delete" (click)="openDeleteDialog(section, i)" *appHasRole="'admin'">
+        delete_forever
+      </span>
+    <app-code-section [section]="section" *ngIf="section.component == 'code'" ></app-code-section>
+    <app-dangeralert-section [section]="section" *ngIf="section.component == 'danger-alert'">
+    </app-dangeralert-section>
+    <app-doubleimage-section [section]="section" *ngIf="section.component == 'image-double'">
+    </app-doubleimage-section>
+    <app-image-section [section]="section" *ngIf="section.component == 'image'"></app-image-section>
+    <app-infoalert-section [section]="section" *ngIf="section.component == 'info-alert'"></app-infoalert-section>
+    <app-successalert-section [section]="section" *ngIf="section.component == 'success-alert'">
+    </app-successalert-section>
+    <app-richtext-section [section]="section" *ngIf="section.component == 'table'"></app-richtext-section>
+    <app-text-section [section]="section" *ngIf="section.component == 'text'"> </app-text-section>
+    <app-textarea-section [section]="section" *ngIf="section.component == 'textarea'"></app-textarea-section>
+    <app-title-section [section]="section" *ngIf="section.component == 'title'"></app-title-section>
+    <app-warningalert-section [section]="section" *ngIf="section.component == 'warning-alert'">
+    </app-warningalert-section>
+    <div class="custom-placeholder" *cdkDragPlaceholder ></div>
+  </div>
+</div>
+
+<div class="flex between fixebarre" *appHasRole="'admin'" >
+  <mat-form-field>
+    <mat-label>Choose section type</mat-label>
+    <mat-select matNativeControl [(ngModel)]="section.component">
+      <mat-option *ngFor="let sectionType of typeSections" [value]="sectionType.nameSection">
+        {{sectionType.nameSection}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button class="button" mat-raised-button (click)="openDialog()">Add</button>
+</div>

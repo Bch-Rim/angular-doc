@@ -1,0 +1,31 @@
+<header id="header" class="header">
+    <div class="container">
+        <div class="branding">
+            <h1 class="logo">
+                <a href="index.html">
+                    <span aria-hidden="true" class="icon_documents_alt icon"></span>
+                    <span class="text-highlight">Pretty</span><span class="text-bold">Docs</span>
+                </a>
+            </h1>
+
+        </div>
+        <!--//branding-->
+
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active">Quick Start</li>
+        </ol>
+
+        <div class="top-search-box flex inline">
+            <button *appHasRole="'guest'" class="button" mat-stroked-button (click)="openDialog()">Login</button>
+            <button *appHasRole="'admin'" class="button" mat-stroked-button (click)="switchTo('guest')">LogOut</button>
+
+            <form class="form-inline search-form justify-content-center" action="" method="get">
+                <input type="text" placeholder="Search..." name="search" class="form-control search-input">
+                <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+
+    </div>
+    <!--//container-->
+</header>

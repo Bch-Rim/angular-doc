@@ -1,0 +1,33 @@
+<div>
+    <h1 class="mat-title title">Sign-in</h1>
+    <p class="mat-small text">We're glad to see you again. Please sign-in</p>
+</div><br>
+<form [formGroup]="formGroup">
+    <!-- EMAIL -->
+    <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email">
+        <mat-icon matSuffix> email</mat-icon>
+        <mat-error *ngIf="f.email.hasError('required')">
+            Please specify an email address
+        </mat-error>
+        <br>
+    </mat-form-field>
+    <!-- PASSWORD -->
+    <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+        <mat-icon matSuffix (click)="hidePassword = !hidePassword">
+            {{ hidePassword ? 'visibility_off' : 'visibility'}}
+        </mat-icon>
+        <mat-error *ngIf="f.password.hasError('required')">
+            Please set password
+        </mat-error>
+    </mat-form-field>
+    <br>
+
+    <button class="button" mat-raised-button (click)="login()">Login</button>
+    <button class="backButton" mat-raised-button (click)="onNoClick()">Back</button>
+
+
+</form>

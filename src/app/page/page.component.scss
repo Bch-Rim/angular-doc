@@ -1,0 +1,85 @@
+.section-title {
+    font-size: 26px;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: bold;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d7d7d7;
+}
+.fixebarre {
+    background-color: #f9f9fb;
+    height: 70px;
+    margin-top: 0;
+    bottom: 0px;
+}
+.flex {
+    display: flex;
+}
+.between {
+    justify-content: space-between;
+}
+
+.button {
+    margin: auto 0;
+    width: 80px;
+    margin-right: 25px;  
+    background-color: #40babd;
+    color: #ffffff;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+  .button:hover {
+    padding-right: 25px;
+  }
+
+.custom-placeholder {
+    background: #ccc;
+    border: dotted 3px #999;
+    min-height: 60px;
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+
+  }
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  .section-draggable {
+      border:1px solid transparent;
+      position: relative;
+      margin-right: -30px;
+      padding-right: 30px;
+      margin-left: -30px;
+      padding-left: 30px;
+      margin-bottom: 10px;
+
+      .material-icons {
+          position: absolute;
+          display: none;
+          color:#999;
+          right: 0;
+          top: 0;
+      }
+
+      .edit {
+        top: 40px;
+    }
+
+    .delete {
+        top:80px
+    }
+
+      &:hover .material-icons {
+          display: block;
+      }
+
+  }
+
+.icon {
+    color:#999;
+}
+
+

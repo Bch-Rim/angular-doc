@@ -1,0 +1,62 @@
+<div id="doc-nav" class="doc-nav">
+  <nav id="doc-menu" class="nav doc-menu flex-column sticky">
+
+    <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+
+      <ng-container *ngFor="let categorie of categories ; let i = index" class="section-draggable" >
+
+        <div class="flex inline">
+          <a class="nav-link scrollto style" (click)="clickmenus(categorie.id)" cdkDrag>{{categorie.title}}</a>
+          <div class="page-draggable"  *appHasRole="'admin'">
+            <span class="material-icons edit" (click)="categoryEditDialog(categorie)">
+              create
+            </span>
+            <span class="material-icons delete" (click)="categoryDeleteDialog(categorie)">
+              delete_forever
+            </span>
+          </div>
+        </div>
+
+        <div *ngIf="categorie.subcategories.length && menus[categorie.id]">
+          <div *ngFor="let subcategorie of categorie.subcategories ;let i = index">
+            <div class="flex inline">
+              <a class="nav-link scrollto" (click)="clickmenus(subcategorie.id)" cdkDrag>{{subcategorie.title}}</a>
+              <div class="page-draggable"  *appHasRole="'admin'">
+                <span class="material-icons edit" (click)="categoryEditDialog(subcategorie)">
+                  create
+                </span>
+                <span class="material-icons delete" (click)="categoryDeleteDialog(subcategorie)">
+                  delete_forever
+                </span>
+              </div>
+            </div>
+
+            <nav class="doc-sub-menu nav flex-column" *ngIf="subcategorie.pages.length && menus[subcategorie.id]">
+
+              <a *ngFor="let page of subcategorie.pages ;let i = index" class="nav-link scrollto" [routerLink]="['/content', page.id]" >
+                <p cdkDrag>{{page.title}}</p>
+                <div class="page-draggable"  *appHasRole="'admin'">
+                  <span class="material-icons edit2" (click)="pageEditDialog(page)">
+                    create
+                  </span>
+                  <span class="material-icons delete2" (click)="pageDeleteDialog(page)">
+                    delete_forever
+                  </span>
+                </div>
+              </a>
+            </nav>
+          </div>
+        </div>
+      </ng-container>
+      <div class="custom-placeholder" *cdkDragPlaceholder></div>
+
+    </div>
+    <div class="example-button-container buttonPosition" *appHasRole="'admin'" >
+      <button mat-mini-fab color="accent" (click)="openDialogAddPages()"
+        aria-label="Example icon button with a plus one icon">
+        <mat-icon>plus_one</mat-icon>
+      </button>
+    </div>
+
+  </nav>
+</div>

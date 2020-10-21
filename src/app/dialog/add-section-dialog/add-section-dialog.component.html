@@ -1,0 +1,17 @@
+
+<h1 mat-dialog-title>Add new section of type {{data.section.component}}</h1>
+<div mat-dialog-content>
+    <app-success-alert-form-section *ngIf="data.section.component=='success-alert'" [section]="data.section"></app-success-alert-form-section>
+    <app-warning-alert-form-section *ngIf="data.section.component=='warning-alert'" [section]="data.section"></app-warning-alert-form-section>
+    <app-info-alert-form-section *ngIf="data.section.component=='info-alert'" [section]="data.section"></app-info-alert-form-section>
+    <app-danger-alert-form-section *ngIf="data.section.component=='danger-alert'" [section]="data.section"></app-danger-alert-form-section>
+    <app-text-form-section *ngIf="data.section.component=='text'" [section]="data.section"></app-text-form-section>
+    <app-textarea-form-section *ngIf="data.section.component=='textarea'" [section]="data.section"></app-textarea-form-section>
+    <app-richtext-form-section *ngIf="data.section.component=='table'" [section]="data.section"></app-richtext-form-section>
+    <app-code-form-section *ngIf="data.section.component=='code'" [section]="data.section"></app-code-form-section>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Back</button>
+    <button mat-button  (click)="addSection()">Add</button>
+</div>
